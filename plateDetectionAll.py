@@ -5,7 +5,7 @@ import numpy as np
 from pathlib import Path 
 
 
-### 219.jpg -> Contrast arttırıp arkaplan daha beyaz yapılırsa o küçük daireleri bulur mu tekrar ? 
+
 plate_path = Path("photos/plates")
 croppedplate_path = Path("photos/cplates3")
 head,tail = os.path.split(plate_path)
