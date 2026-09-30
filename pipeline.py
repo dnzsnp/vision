@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np 
 import cv2 as cv 
 from pathlib import Path
-#For loop folder -> segmentation -> character sep. -> 
+
 
 image_folder =Path("C:/Users/deniz/Desktop/plates")
 plate_path = Path("C:/Users/deniz/Desktop/vision/photos/plates")
@@ -21,7 +21,6 @@ def folder_jpg_extract(folder):
         success = cv.imwrite(str(output_path), image)
         print("saved:", success, "->", output_path)
 
-#folder_jpg_extract(image_folder)
 
 head,tail = os.path.split(plate_path)
 
