@@ -19,7 +19,6 @@ def segmentationChar(img):
      kernel = np.ones((3,3), np.uint8)
      closed = cv.morphologyEx(thres_img, cv.MORPH_CLOSE, kernel, iterations=1)
      contours,hierarchy = cv.findContours(closed,cv.RETR_TREE,cv.CHAIN_APPROX_SIMPLE)
-     #draw_contours = cv.drawContours(img,contours,-1,(0,0,0),1)
      top10 = sorted(contours,key=lambda c:cv.contourArea(c,False), reverse=True)[:10]
      return top10 
 
@@ -27,7 +26,7 @@ def segmentationChar(img):
 def crop_contours(contours):
      char_coor=[]
      for i , c in enumerate(top10):
-        peri = cv.arcLength(c, True)          # konturun çevresi
+        peri = cv.arcLength(c, True)        
         approx = cv.approxPolyDP(c, 0.02 * peri, True)
         x,y,w,h = cv.boundingRect(c)
         print((h/w))
@@ -60,7 +59,7 @@ def char_crop_save(char_list,file_path): # sort list save
             plt.close()
             folder = os.path.join(crop_path, character)
             if os.path.isdir(folder):
-                   #buneamk#cv.imwrite(os.path.join(folder,1"", f"{character}_{tail}"), char_resized)
+                   
                   print("folder exists.")
             else:
                   os.mkdir(folder)      
@@ -78,7 +77,7 @@ def char_save(char_list, file_path, img):
         cv.imshow("Character", char_resized)
         cv.waitKey(1)
 
-        char = input("Character? (',' = unreadable, 'q' = quit): ").lower() # inputu lower yap 
+        char = input("Character? (',' = unreadable, 'q' = quit): ").lower() 
         if char == "q":
             cv.destroyAllWindows()
             return
@@ -87,7 +86,7 @@ def char_save(char_list, file_path, img):
 
         folder = os.path.join(crop_path, char)
         os.makedirs(folder, exist_ok=True)
-        filename = f"{char}_{i}_{file_path.name}"   # <- tail yerine file_path.name
+        filename = f"{char}_{i}_{file_path.name}"   
         cv.imwrite(os.path.join(folder, filename), char_resized)
         print(f"{folder}/{filename}")
           
@@ -109,6 +108,6 @@ for i in crop_path.iterdir():
           count = sum(1 for f in i.iterdir() if f.is_file())
           print(f"{i.name}:{count}")
 
-# sonda dosya isimlerini(karakterleri) içindeki dosya sayısıyla yaz 
+
      
 
